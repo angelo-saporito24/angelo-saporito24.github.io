@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F4F6F5">
+<title>Angelo Saporito | Research</title>
+<meta name="description" content="Applied economist with an MSc in Data Science from the LSE, working on what measurement and estimation pipelines discard. Papers, code, and CV.">
+<link rel="canonical" href="https://angelo-saporito24.github.io/research/">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Angelo Saporito | Research">
+<meta property="og:description" content="Applied economist with an MSc in Data Science from the LSE, working on what measurement and estimation pipelines discard.">
+<meta property="og:url" content="https://angelo-saporito24.github.io/research/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23F4F6F5'/%3E%3Crect x='5.5' y='12.5' width='21' height='7' fill='none' stroke='%239AA6AD' stroke-width='1.5'/%3E%3Crect x='5.5' y='12.5' width='6' height='7' fill='%231F4E8C'/%3E%3C/svg%3E">
+
+<!-- Newsreader (SIL Open Font License), served from the site's shared fonts folder -->
+<link rel="preload" href="../fonts/newsreader-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style id="fonts">
+@font-face{font-family:"Newsreader";font-style:normal;font-weight:350 550;font-display:swap;src:url("../fonts/newsreader-normal.woff2") format("woff2");}
+@font-face{font-family:"Newsreader";font-style:italic;font-weight:350 550;font-display:swap;src:url("../fonts/newsreader-italic.woff2") format("woff2");}
+</style>
+
+<style>
+/* ------------------------------------------------------------------
+   Tokens
+   ------------------------------------------------------------------ */
+:root {
+  --paper: #F4F6F5;     /* cool paper */
+  --ink: #1D2328;       /* text */
+  --graphite: #5A646C;  /* dates, captions, secondary text */
+  --hatch: #B8C2C8;     /* hatching: what the data can't pin down */
+  --blue: #1F4E8C;      /* ink blue: links, and what the data does pin down */
+
+  --spine: 9.5rem;      /* left column for dates and labels */
+  --gap: 2.25rem;
+  --measure: 37rem;     /* text column, about 70 characters */
+
+  --hatching: repeating-linear-gradient(-45deg, var(--hatch) 0 1.2px, transparent 1.2px 4.6px);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Newsreader", "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  font-size: 1.0625rem;
+  line-height: 1.58;
+  font-optical-sizing: auto;
+  font-kerning: normal;
+}
+
+p { margin: 0; text-wrap: pretty; }
+p + p { margin-top: 0.85em; }
+
+a {
+  color: var(--blue);
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: color-mix(in srgb, var(--blue) 40%, transparent);
+  transition: text-decoration-color 120ms ease;
+}
+a:hover { text-decoration-color: currentColor; }
+a:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+  border-radius: 1px;
+  text-decoration-color: currentColor;
+}
+
+::selection { background: color-mix(in srgb, var(--blue) 18%, transparent); }
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  padding: 0.5rem 0.8rem;
+  background: var(--ink);
+  color: var(--paper);
+  text-decoration: none;
+  z-index: 2;
+}
+.skip-link:focus { top: 1rem; }
+
+/* ------------------------------------------------------------------
+   Frame: a left spine for dates and labels, a text column for the rest
+   ------------------------------------------------------------------ */
+.page {
+  max-width: calc(var(--spine) + var(--gap) + var(--measure));
+  margin-left: clamp(1.25rem, calc((100vw - 48.75rem) * 0.36), 20rem);
+  margin-right: 1.25rem;
+  padding-top: clamp(3.5rem, 10vw, 7.5rem);
+  padding-bottom: clamp(3rem, 7vw, 5rem);
+}
+
+.masthead,
+.entry,
+.terms > div,
+.colophon {
+  display: grid;
+  grid-template-columns: var(--spine) minmax(0, 1fr);
+  column-gap: var(--gap);
+}
+
+/* ------------------------------------------------------------------
+   Masthead
+   ------------------------------------------------------------------ */
+.masthead > * { grid-column: 2; }
+.masthead > h1 { grid-column: 1 / -1; }
+
+h1 {
+  margin: 0 0 clamp(1.5rem, 3.2vw, 2.4rem) -0.04em;
+  font-size: clamp(2.6rem, 3.6vw + 1.6rem, 4.6rem);
+  font-weight: 370;
+  line-height: 0.98;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.masthead p { max-width: 35rem; }
+.lead { font-size: 1.1875rem; line-height: 1.5; }
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 1.4rem;
+  margin: 1.15rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ------------------------------------------------------------------
+   Sections and entries
+   ------------------------------------------------------------------ */
+.section { margin-top: clamp(3.75rem, 8vw, 5.5rem); }
+
+.section > h2 {
+  margin: 0 0 1.6rem -0.02em;
+  font-size: 1.5rem;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.2;
+}
+
+.entry { align-items: baseline; }
+.entry + .entry { margin-top: 2.4rem; }
+.section.compact .entry + .entry { margin-top: 1.35rem; }
+
+.entry-meta {
+  color: var(--graphite);
+  font-size: 0.9375rem;
+  line-height: 1.35;
+  font-variant-numeric: tabular-nums;
+}
+.entry-meta .year,
+.entry-meta .kind { display: block; }
+.entry-meta .kind { font-style: italic; }
+
+.entry-title {
+  margin: 0 0 0.4rem;
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.3;
+  text-wrap: balance;
+}
+
+.entry-note {
+  margin-bottom: 0.7rem;
+  color: var(--graphite);
+  font-size: 0.96875rem;
+  font-style: italic;
+}
+
+.entry-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.3rem;
+  margin-top: 0.8rem;
+}
+.nowrap { white-space: nowrap; }
+.entry-links .muted { color: var(--graphite); font-style: italic; }
+
+/* ------------------------------------------------------------------
+   Figures: solid is what the data pins down, hatched is what it doesn't
+   ------------------------------------------------------------------ */
+.figure { margin: 1.4rem 0 1.3rem; }
+
+.bar {
+  position: relative;
+  height: 0.625rem;
+  background-image: var(--hatching);
+  box-shadow: inset 0 0 0 1px var(--hatch);
+}
+.bar .solid {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: calc(var(--share) * 100%);
+  background: var(--blue);
+}
+
+.scale { position: relative; height: 2.6rem; --mid: 0.95rem; }
+.scale > span { position: absolute; }
+.scale .track {
+  left: 0;
+  right: 0;
+  top: var(--mid);
+  height: 1px;
+  background: color-mix(in srgb, var(--graphite) 55%, transparent);
+}
+.scale .band {
+  top: calc(var(--mid) - 0.3125rem);
+  height: 0.625rem;
+  left: calc(var(--from) / var(--max) * 100%);
+  width: calc((var(--to) - var(--from)) / var(--max) * 100%);
+}
+.scale .band.hatched {
+  background-color: var(--paper);
+  background-image: var(--hatching);
+  box-shadow: inset 0 0 0 1px var(--hatch);
+}
+.scale .band.solid { background: var(--blue); min-width: 3px; }
+.scale .tick {
+  top: calc(var(--mid) - 0.55rem);
+  height: 1.1rem;
+  width: 1px;
+  left: calc(var(--at) / var(--max) * 100%);
+  background: var(--ink);
+}
+.scale .tick.faint { background: color-mix(in srgb, var(--graphite) 70%, transparent); }
+.scale .label {
+  top: calc(var(--mid) + 0.75rem);
+  left: calc(var(--at) / var(--max) * 100%);
+  transform: translateX(-50%);
+  color: var(--graphite);
+  font-size: 0.8125rem;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.scale .label.start { transform: none; }
+
+figcaption {
+  max-width: 34rem;
+  margin-top: 0.6rem;
+  color: var(--graphite);
+  font-size: 0.9375rem;
+  font-style: italic;
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+
+/* ------------------------------------------------------------------
+   Methods list and colophon
+   ------------------------------------------------------------------ */
+.terms { margin: 0; }
+.terms > div { align-items: baseline; }
+.terms > div + div { margin-top: 0.9rem; }
+.terms dt {
+  color: var(--graphite);
+  font-size: 0.9375rem;
+  font-style: italic;
+  line-height: 1.35;
+}
+.terms dd { margin: 0; }
+
+.colophon {
+  margin-top: clamp(4rem, 9vw, 6.5rem);
+  color: var(--graphite);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+.colophon > div { grid-column: 2; }
+.colophon p + p { margin-top: 0.35rem; }
+
+/* ------------------------------------------------------------------
+   Narrow screens: the spine folds into a line above each entry
+   ------------------------------------------------------------------ */
+@media (max-width: 46rem) {
+  .page { margin-left: 1.25rem; }
+
+  .masthead,
+  .entry,
+  .terms > div,
+  .colophon { display: block; }
+
+  .lead { font-size: 1.125rem; }
+
+  .entry-meta {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 0.3em;
+    margin-bottom: 0.3rem;
+  }
+  .entry-meta .kind { order: -1; }
+  .entry-meta .kind::after { content: ","; }
+
+  .terms dt { margin-bottom: 0.15rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  a { transition: none; }
+}
+
+@media print {
+  :root { --paper: #fff; --ink: #000; --graphite: #444; }
+  @page { margin: 16mm 16mm 18mm; }
+  body { font-size: 10.5pt; line-height: 1.45; }
+  .page { margin: 0; padding: 0; max-width: none; }
+  .skip-link { display: none; }
+  .section { margin-top: 1.75rem; }
+  a { color: inherit; text-decoration: none; }
+  .links a[href^="http"]::after,
+  .entry-links a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    color: #444;
+    font-size: 0.85em;
+    word-break: break-all;
+  }
+  .section > h2, .entry-title { break-after: avoid; }
+  .figure, .terms > div, .section.compact .entry { break-inside: avoid; }
+  .bar, .scale span { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+</style>
+</head>
+
+<body>
+<a class="skip-link" href="#research">Skip to research</a>
+
+<div class="page">
+
+  <header class="masthead">
+    <h1>Angelo Saporito</h1>
+    <p class="lead">I’m an applied economist with undergraduate degrees in economics and mathematics, and I’ve just completed an MSc in Data Science at the London School of Economics. My work keeps returning to one question: what a measurement or estimation pipeline discards, and how that shapes the conclusions drawn from it.</p>
+    <p>I’m looking for a two-year research assistantship or pre-doctoral position as preparation for a PhD in economics. I’m available from October 2026 and am a US citizen.</p>
+    <ul class="links">
+      <li><a href="saporito-cv.pdf">CV (PDF)</a></li>
+      <li><a href="mailto:saporitoangelo2&#64;outlook&#46;com">Email</a></li>
+      <li><a href="https://github.com/angelo-saporito24">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/angelo-saporito">LinkedIn</a></li>
+    </ul>
+  </header>
+
+  <main>
+
+    <section class="section" id="research" aria-labelledby="h-research">
+      <h2 id="h-research">Research</h2>
+
+      <article class="entry">
+        <div class="entry-meta"><span class="year">2026</span> <span class="kind">Working paper</span></div>
+        <div class="entry-body">
+          <h3 class="entry-title">Partially Identified: privacy suppression and the <span class="nowrap">automation–augmentation</span> measure in the Anthropic Economic Index</h3>
+          <p>The Anthropic Economic Index reports, for each O*NET task, how much observed AI usage is automation rather than augmentation. The measure has been adopted quickly: it underpins occupation-level wage regressions, an NBER working paper, and regional exposure indices, and the index itself is cited in <a href="https://www.federalreserve.gov/econres/notes/feds-notes/the-ai-buildout-and-the-economy-publicly-available-data-to-assess-ais-impact-20260717.html">Federal Reserve Board staff research</a>. I show that the measure is partially identified. To protect privacy, the index suppresses any cell holding fewer than 15 conversations from fewer than five accounts, which censors the data on two margins: modes within observed tasks, and whole tasks within occupations.</p>
+          <figure class="figure">
+            <div class="bar" aria-hidden="true"><span class="solid" style="--share: 0.0542"></span></div>
+            <figcaption>Solid: the 42 of 775 occupations (5.4%) whose identified set is narrower than 0.10 on at least five observed tasks. Hatched: the other 733. Sixteen of 22 major occupation groups contain none.</figcaption>
+          </figure>
+          <p>Suppression removes only 6.38% of classified conversation volume, but it concentrates in thin cells, and most tasks are thin. Two errors in a naive reconstruction of the published automation share nearly cancel, one biasing it up 0.55 points and the other down 0.47, so a pipeline that has failed twice appears to validate.</p>
+          <p class="entry-links">
+            <a href="papers/partially-identified.pdf">Paper (PDF)</a>
+            <a href="https://github.com/angelo-saporito24/Partially-Identified">Replication code in R</a>
+          </p>
+        </div>
+      </article>
+
+      <article class="entry">
+        <div class="entry-meta"><span class="year">2026</span> <span class="kind">Working paper</span></div>
+        <div class="entry-body">
+          <h3 class="entry-title">Belief-State Structure in Reinforcement Learning for Monetary Policy</h3>
+          <p class="entry-note">Sole-authored. Extends two LSE group projects, in deep learning and reinforcement learning, that I proposed and led.</p>
+          <p>What happens to a learned policy rule when the central bank observes a forecast rather than the state? I train PPO and SAC agents in a three-equation New Keynesian economy in which the bank sees only a belief supplied by a forecaster-informed noise model, then project the policy they learn onto the Taylor rule. In all twelve full-budget runs the long-run inflation response falls to between 0.011 and 0.025, and none is distinguishable from zero.</p>
+          <figure class="figure">
+            <div class="scale" aria-hidden="true" style="--max: 1.8">
+              <span class="track"></span>
+              <span class="band hatched" style="--from: 0.756; --to: 1.196"></span>
+              <span class="band solid" style="--from: 0.011; --to: 0.025"></span>
+              <span class="tick faint" style="--at: 1"></span>
+              <span class="tick" style="--at: 1.66"></span>
+              <span class="label start" style="--at: 0">0</span>
+              <span class="label" style="--at: 1">1</span>
+              <span class="label" style="--at: 1.66">1.66</span>
+            </div>
+            <figcaption>Long-run inflation response. Solid: the twelve runs that see a belief, 0.011 to 0.025. Hatched: agents that see the true state, 0.76 to 1.20. The dark tick is the analytical Taylor-rule benchmark, 1.66; the Taylor principle needs a response above 1.</figcaption>
+          </figure>
+          <p>The size of the collapse is consistent with attenuation under signal noise about five times the simulated dispersion of inflation. The design can’t yet separate that from a learning failure, since agents that see the state also fall short of the analytical rule; doing so needs the optimal policy under partial observation as a comparison. The contrast the paper set out to measure, calibrated against overconfident beliefs, is not identified, and is reported that way.</p>
+          <p class="entry-links">
+            <a href="papers/belief-state-rl-monetary-policy.pdf">Paper (PDF)</a>
+            <a href="https://github.com/angelo-saporito24/Macro-forecasting">Code in Python</a>
+          </p>
+        </div>
+      </article>
+
+      <article class="entry">
+        <div class="entry-meta"><span class="year">2026</span> <span class="kind">MSc capstone</span></div>
+        <div class="entry-body">
+          <h3 class="entry-title">Modelling Tail Risk and Asymmetry in Energy Spread Trading</h3>
+          <p class="entry-note">With two other students, in partnership with a European energy-trading firm.</p>
+          <p>We forecast the extreme quantiles of the spread between day-ahead and real-time electricity prices at ERCOT’s four major hubs, using CAViaR models extended with grid fundamentals and estimated under a strict walk-forward protocol: 13,872 monthly fits over seventeen delivery months. Statistical and economic evaluation came apart. The most accurate specification beat the baseline on pinball loss in all 48 of its 2025 comparisons, but lost its calibration in the 2026 holdout while the plain baselines kept theirs, and the exposure rule built on the forecasts traded profit for lower volatility and drawdown. The evidence supports a monitored risk-control input, not a profit engine.</p>
+          <p class="entry-links"><span class="muted">Report available on request</span></p>
+        </div>
+      </article>
+
+      <article class="entry">
+        <div class="entry-meta"><span class="year">2026</span> <span class="kind">Course paper</span></div>
+        <div class="entry-body">
+          <h3 class="entry-title">Ambiguity as Evidence: probabilistic preprocessing and topic uncertainty quantification in Ancient Greek philosophical texts</h3>
+          <p class="entry-note">Bayesian Machine Learning, LSE.</p>
+          <p>Ancient Greek is highly inflected, and deterministic lemmatisation discards the ambiguity of its word forms before any model sees the text. I treat morphological analysis as probabilistic inference and propagate the uncertainty through topic models of twelve works of Plato and Aristotle. A matched control then showed that the topic model’s own initialisation noise reproduces 98.8% of the headline uncertainty measure; morphology alone accounts for a smaller but real 28.6%, against 36.9% for the confounded figure. What remains is structured, and varies with rhetorical register even where corpus size is fixed by construction, against the view that ambiguity is mainly a problem of corpus size.</p>
+          <p class="entry-links">
+            <a href="papers/ambiguity-as-evidence.pdf">Paper (PDF)</a>
+            <a href="https://github.com/angelo-saporito24/ST451_project">Code in Python</a>
+          </p>
+        </div>
+      </article>
+    </section>
+
+    <section class="section" aria-labelledby="h-experience">
+      <h2 id="h-experience">Research experience</h2>
+
+      <article class="entry">
+        <div class="entry-meta"><span class="year">2022–2024</span> <span class="kind">Research assistant</span></div>
+        <div class="entry-body">
+          <h3 class="entry-title">Department of Economics, West Chester University</h3>
+          <p class="entry-note">With Simon Condliffe and Matt Saboe.</p>
+          <p>I estimated the employment and output effects of Pennsylvania’s Act 39 on the state’s beer and wine industry, using a regression-discontinuity design with IMPLAN input–output modelling on Bureau of Labor Statistics and Department of Labor microdata. I also analysed the Clean Slate Act, which automates the sealing of criminal records, and its relationship to access to employment, housing, and education, using ordinal logistic and categorical-data methods; those results are associational and were reported as such. I built and maintained the data pipeline in SQL and SAS, and co-authored both reports.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="section" aria-labelledby="h-education">
+      <h2 id="h-education">Education</h2>
+
+      <article class="entry">
+        <div class="entry-meta"><span class="year">2025–2026</span></div>
+        <div class="entry-body">
+          <h3 class="entry-title">MSc Data Science, London School of Economics</h3>
+          <p>Distinction expected. Machine learning and data mining, Bayesian machine learning, reinforcement learning, deep learning, statistical methods, and managing and visualising data. I also audited five graduate courses in philosophy: philosophy of economics, rationality and choice, philosophy of science, advanced logic, and the ethics of data and AI.</p>
+        </div>
+      </article>
+
+      <article class="entry">
+        <div class="entry-meta"><span class="year">2019–2024</span></div>
+        <div class="entry-body">
+          <h3 class="entry-title">BS Economics and BS Mathematics, West Chester University of Pennsylvania</h3>
+          <p>Concentrations in statistics and financial mathematics. GPA 3.78 out of 4.00, summa cum laude, Dean’s List in eight semesters, Omicron Delta Epsilon.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="section compact" aria-labelledby="h-presentations">
+      <h2 id="h-presentations">Presentations</h2>
+
+      <article class="entry">
+        <div class="entry-meta"><span class="year">2023</span></div>
+        <div class="entry-body">
+          <p>“Living with a Criminal Record in Pennsylvania and the Impact of Clean Slate.” J.&nbsp;Murphy, A.&nbsp;Saporito, S.&nbsp;Condliffe, M.&nbsp;Saboe, and M.&nbsp;Ocean. American Society of Criminology, 78th Annual Meeting, Philadelphia, November 2023.</p>
+        </div>
+      </article>
+
+      <article class="entry">
+        <div class="entry-meta"><span class="year">2023</span></div>
+        <div class="entry-body">
+          <p>“Living with a Criminal Record in Pennsylvania.” J.&nbsp;Murphy, A.&nbsp;Saporito, S.&nbsp;Condliffe, and M.&nbsp;Saboe. Northeastern Association of Criminal Justice Sciences, Annual Conference, Williamsport, Pennsylvania, 2023.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="section compact" aria-labelledby="h-awards">
+      <h2 id="h-awards">Awards</h2>
+
+      <article class="entry">
+        <div class="entry-meta"><span class="year">2023</span></div>
+        <div class="entry-body">
+          <p>Graduate Datathon, second place, West Chester University and Fulton Bank. The only undergraduate among graduate teams; I modelled more than five million transaction records and presented recommendations to the bank’s executives.</p>
+        </div>
+      </article>
+
+      <article class="entry">
+        <div class="entry-meta"><span class="year">2023</span></div>
+        <div class="entry-body">
+          <p>Mathematics Endowment Award, West Chester University, for excellence in the mathematics curriculum and for tutoring other undergraduates.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="section" aria-labelledby="h-methods">
+      <h2 id="h-methods">Methods and software</h2>
+
+      <dl class="terms">
+        <div>
+          <dt>Econometrics</dt>
+          <dd>Causal inference and regression discontinuity, partial identification and interval censoring, quantile regression and value at risk, time series and panel data, maximum likelihood, bootstrap and Monte Carlo methods, heteroskedasticity-robust inference, input–output modelling.</dd>
+        </div>
+        <div>
+          <dt>Machine learning</dt>
+          <dd>Reinforcement learning (PPO, SAC, DQN, offline RL), Bayesian inference (variational Bayes, MCMC, Gaussian processes), deep learning, probabilistic forecasting and calibration.</dd>
+        </div>
+        <div>
+          <dt>Software</dt>
+          <dd>Python (pandas, NumPy, SciPy, statsmodels, scikit-learn, PyTorch, numba), R, SAS, SQL, MATLAB, LaTeX, Git.</dd>
+        </div>
+      </dl>
+    </section>
+
+  </main>
+
+  <footer class="colophon">
+    <div>
+      <p>My creative work can be found on the <a href="../">main site</a>.</p>
+      <p><a href="mailto:saporitoangelo2&#64;outlook&#46;com">saporitoangelo2&#64;outlook&#46;com</a></p>
+      <p>Last updated September 2026.</p>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

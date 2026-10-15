@@ -2,9 +2,11 @@
 <html lang="en-GB">
 <head>
 <meta charset="utf-8">
+<script>try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.dataset.theme=t}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="light">
-<meta name="theme-color" content="#F4F6F5">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#15191C" media="(prefers-color-scheme: dark)">
 <title>Angelo Saporito | Research</title>
 <meta name="description" content="Applied economist with an MSc in Data Science from the LSE, working on what measurement and estimation pipelines discard. Papers, code, and CV.">
 <link rel="canonical" href="https://angelo-saporito24.github.io/research/">
@@ -12,7 +14,7 @@
 <meta property="og:title" content="Angelo Saporito | Research">
 <meta property="og:description" content="Applied economist with an MSc in Data Science from the LSE, working on what measurement and estimation pipelines discard.">
 <meta property="og:url" content="https://angelo-saporito24.github.io/research/">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23F4F6F5'/%3E%3Crect x='5.5' y='12.5' width='21' height='7' fill='none' stroke='%239AA6AD' stroke-width='1.5'/%3E%3Crect x='5.5' y='12.5' width='6' height='7' fill='%231F4E8C'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23FFFFFF'/%3E%3Crect x='5.5' y='12.5' width='21' height='7' fill='none' stroke='%239AA6AD' stroke-width='1.5'/%3E%3Crect x='5.5' y='12.5' width='6' height='7' fill='%231F4E8C'/%3E%3C/svg%3E">
 
 <!-- Newsreader (SIL Open Font License), served from the site's shared fonts folder -->
 <link rel="preload" href="../fonts/newsreader-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -26,7 +28,8 @@
    Tokens
    ------------------------------------------------------------------ */
 :root {
-  --paper: #F4F6F5;     /* cool paper */
+  color-scheme: light;
+  --paper: #FFFFFF;
   --ink: #1D2328;       /* text */
   --graphite: #5A646C;  /* dates, captions, secondary text */
   --hatch: #B8C2C8;     /* hatching: what the data can't pin down */
@@ -37,6 +40,16 @@
   --measure: 37rem;     /* text column, about 70 characters */
 
   --hatching: repeating-linear-gradient(-45deg, var(--hatch) 0 1.2px, transparent 1.2px 4.6px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper: #15191C; --ink: #E3E7EA; --graphite: #9BA6AE; --hatch: #56626A; --blue: #8EB3E8;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #15191C; --ink: #E3E7EA; --graphite: #9BA6AE; --hatch: #56626A; --blue: #8EB3E8;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -66,7 +79,8 @@ a {
   transition: text-decoration-color 120ms ease;
 }
 a:hover { text-decoration-color: currentColor; }
-a:focus-visible {
+a:focus-visible,
+button:focus-visible {
   outline: 2px solid var(--blue);
   outline-offset: 3px;
   border-radius: 1px;
@@ -87,6 +101,31 @@ a:focus-visible {
 }
 .skip-link:focus { top: 1rem; }
 
+/* The header every page shares */
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 1.6rem;
+  row-gap: 0.35rem;
+  margin-bottom: clamp(4rem, 10vw, 7rem);
+}
+.site-header .home {
+  margin-right: auto;
+  color: var(--ink);
+  font-size: 1.125rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+.site-header .home:hover { color: var(--blue); }
+.nav { display: flex; flex-wrap: wrap; gap: 0.3rem 1.6rem; margin: 0; padding: 0; list-style: none; }
+.nav a { color: var(--ink); text-decoration-color: transparent; }
+.nav a:hover { text-decoration-color: currentColor; }
+.nav a[aria-current="page"] { text-decoration-color: var(--graphite); }
+.theme-toggle { padding: 0; border: 0; background: none; color: var(--graphite); font: inherit; cursor: pointer; }
+.theme-toggle:hover { color: var(--ink); }
+.theme-toggle[hidden] { display: none; }
+
 /* ------------------------------------------------------------------
    Frame: a left spine for dates and labels, a text column for the rest
    ------------------------------------------------------------------ */
@@ -94,7 +133,7 @@ a:focus-visible {
   max-width: calc(var(--spine) + var(--gap) + var(--measure));
   margin-left: clamp(1.25rem, calc((100vw - 48.75rem) * 0.36), 20rem);
   margin-right: 1.25rem;
-  padding-top: clamp(3.5rem, 10vw, 7.5rem);
+  padding-top: clamp(1.5rem, 4vw, 2.5rem);
   padding-bottom: clamp(3rem, 7vw, 5rem);
 }
 
@@ -114,10 +153,10 @@ a:focus-visible {
 .masthead > h1 { grid-column: 1 / -1; }
 
 h1 {
-  margin: 0 0 clamp(1.5rem, 3.2vw, 2.4rem) -0.04em;
-  font-size: clamp(2.6rem, 3.6vw + 1.6rem, 4.6rem);
+  margin: 0 0 clamp(1.25rem, 2.6vw, 2rem) -0.035em;
+  font-size: clamp(2.4rem, 2.4vw + 1.5rem, 3.4rem);
   font-weight: 370;
-  line-height: 0.98;
+  line-height: 1.02;
   letter-spacing: -0.015em;
   text-wrap: balance;
 }
@@ -281,6 +320,7 @@ figcaption {
    ------------------------------------------------------------------ */
 @media (max-width: 46rem) {
   .page { margin-left: 1.25rem; }
+  .site-header .home { flex-basis: 100%; }
 
   .masthead,
   .entry,
@@ -306,7 +346,11 @@ figcaption {
 }
 
 @media print {
-  :root { --paper: #fff; --ink: #000; --graphite: #444; }
+  :root, :root[data-theme], :root:not([data-theme="light"]) {
+    color-scheme: light;
+    --paper: #fff; --ink: #000; --graphite: #444; --hatch: #B8C2C8; --blue: #1F4E8C;
+  }
+  .site-header .nav, .theme-toggle { display: none; }
   @page { margin: 16mm 16mm 18mm; }
   body { font-size: 10.5pt; line-height: 1.45; }
   .page { margin: 0; padding: 0; max-width: none; }
@@ -328,12 +372,23 @@ figcaption {
 </head>
 
 <body>
-<a class="skip-link" href="#research">Skip to research</a>
+<a class="skip-link" href="#research">Skip to papers and projects</a>
 
 <div class="page">
 
+  <header class="site-header">
+    <a class="home" href="/">Angelo Saporito</a>
+    <nav aria-label="Site">
+      <ul class="nav">
+        <li><a href="/writing/">Writing</a></li>
+        <li><a href="/research/" aria-current="page">Research</a></li>
+      </ul>
+    </nav>
+    <button class="theme-toggle" type="button" hidden>Dark</button>
+  </header>
+
   <header class="masthead">
-    <h1>Angelo Saporito</h1>
+    <h1>Research</h1>
     <p class="lead">I’m an applied economist with undergraduate degrees in economics and mathematics, and I’ve just completed an MSc in Data Science at the London School of Economics. My work keeps returning to one question: what a measurement or estimation pipeline discards, and how that shapes the conclusions drawn from it.</p>
     <p>I’m looking for a research assistant or research economist position as preparation for a PhD in economics. I’m available now and am a US citizen.</p>
     <ul class="links">
@@ -347,7 +402,7 @@ figcaption {
   <main>
 
     <section class="section" id="research" aria-labelledby="h-research">
-      <h2 id="h-research">Research</h2>
+      <h2 id="h-research">Papers and projects</h2>
 
       <article class="entry">
         <div class="entry-meta"><span class="year">2026</span> <span class="kind">Working paper</span></div>
@@ -383,7 +438,7 @@ figcaption {
               <span class="label" style="--at: 1">1</span>
               <span class="label" style="--at: 1.66">1.66</span>
             </div>
-            <figcaption>Long-run inflation response. Solid: the twelve runs that see a belief, 0.011 to 0.025. Hatched: agents that see the true state, 0.76 to 1.20. The dark tick is the analytical Taylor-rule benchmark, 1.66; the Taylor principle needs a response above 1.</figcaption>
+            <figcaption>Long-run inflation response. Solid: the twelve runs that see a belief, 0.011 to 0.025. Hatched: agents that see the true state, 0.76 to 1.20. The tick at 1.66 marks the analytical Taylor-rule benchmark; the Taylor principle needs a response above 1.</figcaption>
           </figure>
           <p>The size of the collapse is consistent with attenuation under signal noise about five times the simulated dispersion of inflation. The design can’t yet separate that from a learning failure, since agents that see the state also fall short of the analytical rule; doing so needs the optimal policy under partial observation as a comparison. The contrast the paper set out to measure, calibrated against overconfident beliefs, is not identified, and is reported that way.</p>
           <p class="entry-links">
@@ -543,11 +598,12 @@ figcaption {
   <footer class="colophon">
     <div>
       <p>My creative work can be found on the <a href="../">main site</a>.</p>
-      <p><a href="mailto:saporitoangelo2&#64;outlook&#46;com">saporitoangelo2&#64;outlook&#46;com</a></p>
+      <p><a href="mailto:saporitoangelo7&#64;gmail&#46;com">saporitoangelo7&#64;gmail&#46;com</a></p>
       <p>Last updated October 2026.</p>
     </div>
   </footer>
 
 </div>
+<script src="/theme.js" defer></script>
 </body>
 </html>

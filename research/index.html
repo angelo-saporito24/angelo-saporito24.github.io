@@ -101,6 +101,20 @@ button:focus-visible {
 }
 .skip-link:focus { top: 1rem; }
 
+/* Text for screen readers only */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* The header every page shares */
 .site-header {
   display: flex;
@@ -392,10 +406,10 @@ figcaption {
     <p class="lead">I’m an applied economist with undergraduate degrees in economics and mathematics, and I’ve just completed an MSc in Data Science at the London School of Economics. My work keeps returning to one question: what a measurement or estimation pipeline discards, and how that shapes the conclusions drawn from it.</p>
     <p>I’m looking for a research assistant or research economist position as preparation for a PhD in economics. I’m available now and am a US citizen.</p>
     <ul class="links">
-      <li><a href="saporito-cv.pdf">CV (PDF)</a></li>
+      <li><a href="saporito-cv.pdf" target="_blank" rel="noopener">CV (PDF)<span class="visually-hidden"> (opens in a new tab)</span></a></li>
       <li><a href="mailto:saporitoangelo7&#64;gmail&#46;com">Email</a></li>
-      <li><a href="https://github.com/angelo-saporito24">GitHub</a></li>
-      <li><a href="https://www.linkedin.com/in/angelo-saporito">LinkedIn</a></li>
+      <li><a href="https://github.com/angelo-saporito24" target="_blank" rel="noopener">GitHub<span class="visually-hidden"> (opens in a new tab)</span></a></li>
+      <li><a href="https://www.linkedin.com/in/angelo-saporito" target="_blank" rel="noopener">LinkedIn<span class="visually-hidden"> (opens in a new tab)</span></a></li>
     </ul>
   </header>
 
@@ -408,15 +422,15 @@ figcaption {
         <div class="entry-meta"><span class="year">2026</span> <span class="kind">Working paper</span></div>
         <div class="entry-body">
           <h3 class="entry-title">Partially Identified: privacy suppression and the <span class="nowrap">automation–augmentation</span> measure in the Anthropic Economic Index</h3>
-          <p>The Anthropic Economic Index reports, for each O*NET task, how much observed AI usage is automation rather than augmentation. The measure has been adopted quickly: it underpins occupation-level wage regressions, an NBER working paper, and regional exposure indices, and the index itself is cited in <a href="https://www.federalreserve.gov/econres/notes/feds-notes/the-ai-buildout-and-the-economy-publicly-available-data-to-assess-ais-impact-20260717.html">Federal Reserve Board staff research</a>. I show that the measure is partially identified. To protect privacy, the index suppresses any cell holding fewer than 15 conversations from fewer than five accounts, which censors the data on two margins: modes within observed tasks, and whole tasks within occupations.</p>
+          <p>The Anthropic Economic Index reports, for each O*NET task, how much observed AI usage is automation rather than augmentation. The measure has been adopted quickly: it underpins occupation-level wage regressions, an NBER working paper, and regional exposure indices, and the index itself is cited in <a href="https://www.federalreserve.gov/econres/notes/feds-notes/the-ai-buildout-and-the-economy-publicly-available-data-to-assess-ais-impact-20260717.html" target="_blank" rel="noopener">Federal Reserve Board staff research<span class="visually-hidden"> (opens in a new tab)</span></a>. I show that the measure is partially identified. To protect privacy, the index suppresses any cell holding fewer than 15 conversations from fewer than five accounts, which censors the data on two margins: modes within observed tasks, and whole tasks within occupations.</p>
           <figure class="figure">
             <div class="bar" aria-hidden="true"><span class="solid" style="--share: 0.0542"></span></div>
             <figcaption>Solid: the 42 of 775 occupations (5.4%) whose identified set is narrower than 0.10 on at least five observed tasks. Hatched: the other 733. Sixteen of 22 major occupation groups contain none.</figcaption>
           </figure>
           <p>Suppression removes only 6.38% of classified conversation volume, but it concentrates in thin cells, and most tasks are thin. Two errors in a naive reconstruction of the published automation share nearly cancel, one biasing it up 0.55 points and the other down 0.47, so a pipeline that has failed twice appears to validate.</p>
           <p class="entry-links">
-            <a href="papers/partially-identified.pdf">Paper (PDF)</a>
-            <a href="https://github.com/angelo-saporito24/Partially-Identified">Replication code in R</a>
+            <a href="papers/partially-identified.pdf" target="_blank" rel="noopener">Paper (PDF)<span class="visually-hidden"> (opens in a new tab)</span></a>
+            <a href="https://github.com/angelo-saporito24/Partially-Identified" target="_blank" rel="noopener">Replication code in R<span class="visually-hidden"> (opens in a new tab)</span></a>
           </p>
         </div>
       </article>
@@ -442,8 +456,8 @@ figcaption {
           </figure>
           <p>The size of the collapse is consistent with attenuation under signal noise about five times the simulated dispersion of inflation. The design can’t yet separate that from a learning failure, since agents that see the state also fall short of the analytical rule; doing so needs the optimal policy under partial observation as a comparison. The contrast the paper set out to measure, calibrated against overconfident beliefs, is not identified, and is reported that way.</p>
           <p class="entry-links">
-            <a href="papers/belief-state-rl-monetary-policy.pdf">Paper (PDF)</a>
-            <a href="https://github.com/angelo-saporito24/Macro-forecasting">Code in Python</a>
+            <a href="papers/belief-state-rl-monetary-policy.pdf" target="_blank" rel="noopener">Paper (PDF)<span class="visually-hidden"> (opens in a new tab)</span></a>
+            <a href="https://github.com/angelo-saporito24/Macro-forecasting" target="_blank" rel="noopener">Code in Python<span class="visually-hidden"> (opens in a new tab)</span></a>
           </p>
         </div>
       </article>
@@ -465,8 +479,8 @@ figcaption {
           <p class="entry-note">Bayesian Machine Learning, LSE.</p>
           <p>Ancient Greek is highly inflected, and deterministic lemmatisation discards the ambiguity of its word forms before any model sees the text. I treat morphological analysis as probabilistic inference and propagate the uncertainty through topic models of twelve works of Plato and Aristotle. A matched control then showed that the topic model’s own initialisation noise reproduces 98.8% of the headline uncertainty measure; morphology alone accounts for a smaller but real 28.6%, against 36.9% for the confounded figure. What remains is structured, and varies with rhetorical register even where corpus size is fixed by construction, against the view that ambiguity is mainly a problem of corpus size.</p>
           <p class="entry-links">
-            <a href="papers/ambiguity-as-evidence.pdf">Paper (PDF)</a>
-            <a href="https://github.com/angelo-saporito24/ST451_project">Code in Python</a>
+            <a href="papers/ambiguity-as-evidence.pdf" target="_blank" rel="noopener">Paper (PDF)<span class="visually-hidden"> (opens in a new tab)</span></a>
+            <a href="https://github.com/angelo-saporito24/ST451_project" target="_blank" rel="noopener">Code in Python<span class="visually-hidden"> (opens in a new tab)</span></a>
           </p>
         </div>
       </article>
@@ -494,7 +508,7 @@ figcaption {
           <h3 class="entry-title">Bayesian Inference for the Cox–Ingersoll–Ross Process</h3>
           <p class="entry-note">Written up in 2026 from notes made in 2024–25.</p>
           <p>The Cox–Ingersoll–Ross process is the variance process in Heston’s stochastic-volatility model. Its stationary law is Gamma and identifies the long-run mean, but not the speed of mean reversion, which only the transitions reveal. Standard errors that treat a sampled path as independent draws are badly overconfident, and after a square-root transformation the drift parameters have a Gaussian conditional posterior, the core of a data-augmentation sampler. Each result is checked by simulation.</p>
-          <p class="entry-links"><a href="papers/cir-bayesian-inference.pdf">Notes (PDF)</a></p>
+          <p class="entry-links"><a href="papers/cir-bayesian-inference.pdf" target="_blank" rel="noopener">Notes (PDF)<span class="visually-hidden"> (opens in a new tab)</span></a></p>
         </div>
       </article>
 
@@ -503,7 +517,7 @@ figcaption {
         <div class="entry-body">
           <h3 class="entry-title">Numerically Solving the Forced van der Pol Equation: A Finite-Difference Study with Applications to Economic Dynamics</h3>
           <p>The forced van der Pol equation is a reduced form of Kaldor’s and Goodwin’s nonlinear business-cycle models. I solve it with a second-order finite-difference scheme and classify its long-run behaviour with Poincaré sections and Lyapunov exponents. Most settings are regular, but the case study is chaotic, and its forcing sits so close to the edge of the chaotic regime that the step size decides whether the computed solution eventually settles into a cycle.</p>
-          <p class="entry-links"><a href="papers/forced-van-der-pol.pdf">Paper (PDF)</a></p>
+          <p class="entry-links"><a href="papers/forced-van-der-pol.pdf" target="_blank" rel="noopener">Paper (PDF)<span class="visually-hidden"> (opens in a new tab)</span></a></p>
         </div>
       </article>
 
@@ -513,7 +527,7 @@ figcaption {
           <h3 class="entry-title">The Fokker–Planck Equation: Derivation and Applications in Economics and Finance</h3>
           <p class="entry-note">Written for Applied Analysis, West Chester University.</p>
           <p>A derivation of the equation for Brownian motion and then for a general stochastic differential equation, with worked solutions for the Ornstein–Uhlenbeck process, geometric Brownian motion, and the Cox–Ingersoll–Ross process, whose stationary law shows where the Feller condition comes from. It then covers local volatility, wealth distributions in heterogeneous-agent models, and grid-based and learning-based solvers.</p>
-          <p class="entry-links"><a href="papers/fokker-planck-equation.pdf">Paper (PDF)</a></p>
+          <p class="entry-links"><a href="papers/fokker-planck-equation.pdf" target="_blank" rel="noopener">Paper (PDF)<span class="visually-hidden"> (opens in a new tab)</span></a></p>
         </div>
       </article>
     </section>

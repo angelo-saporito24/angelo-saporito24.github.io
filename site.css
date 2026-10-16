@@ -329,6 +329,71 @@ svg.pencil path {
 .sheet .plate { aspect-ratio: 3 / 2; background: var(--frame); }
 
 /* ------------------------------------------------------------------
+   Poems: set left, as written, with each line kept whole; a line too long
+   for a narrow screen wraps with a hanging indent
+   ------------------------------------------------------------------ */
+.contents {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.9rem 2.25rem;
+  margin-top: clamp(2.75rem, 6vw, 4rem);
+  max-width: calc(var(--spine) + var(--gap) + var(--measure));
+  padding-left: calc(var(--spine) + var(--gap));
+}
+.contents-head { margin-bottom: 0.4rem; font-style: italic; }
+.contents ol { margin: 0; padding: 0; list-style: none; }
+.contents li + li { margin-top: 0.15rem; }
+.contents a { color: var(--ink); text-decoration-color: transparent; }
+.contents a:hover { text-decoration-color: currentColor; }
+.contents .n,
+.part-head .n {
+  display: inline-block;
+  min-width: 2.4em;
+  color: var(--graphite);
+  font-style: normal;
+  font-variant-numeric: tabular-nums;
+}
+
+.part { margin-top: clamp(4.5rem, 9vw, 6.5rem); }
+.part-head {
+  display: grid;
+  grid-template-columns: var(--spine) minmax(0, var(--measure));
+  column-gap: var(--gap);
+  margin: 0 0 2.4rem;
+  font-size: 1.6rem;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.2;
+}
+.part-head .n { font-size: 1rem; align-self: baseline; }
+
+.poem,
+.movement {
+  display: grid;
+  grid-template-columns: var(--spine) minmax(0, var(--measure));
+  column-gap: var(--gap);
+  align-items: baseline;
+  scroll-margin-top: 2rem;
+}
+.poem + .poem { margin-top: clamp(3.5rem, 7vw, 5rem); }
+.movement + .movement { margin-top: 2.6rem; }
+.movements { display: block; }
+.poem > .n,
+.movement > .n {
+  color: var(--graphite);
+  font-size: 0.9375rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.verse { font-size: 1.125rem; line-height: 1.6; }
+.verse .stanza { margin: 0; }
+.verse .stanza + .stanza { margin-top: 1.15em; }
+.verse .l { display: block; padding-left: 1.5em; text-indent: -1.5em; }
+.verse .prose { max-width: 32rem; text-wrap: pretty; }
+
+.verse-quote .l { display: block; }
+
+/* ------------------------------------------------------------------
    Colophon
    ------------------------------------------------------------------ */
 .colophon {
@@ -365,6 +430,12 @@ svg.pencil path {
   .entry-meta .kind::after { content: ","; }
 
   .sheet { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  .contents { grid-template-columns: 1fr; padding-left: 0; }
+  .part-head, .poem, .movement { display: block; }
+  .part-head .n { display: block; margin-bottom: 0.2rem; }
+  .poem > .n, .movement > .n { margin-bottom: 0.5rem; }
+  .verse { font-size: 1.0625rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -379,6 +450,6 @@ svg.pencil path {
   .page { margin: 0; padding: 0; max-width: none; }
   .skip-link, .site-header .nav, .theme-toggle { display: none; }
   a { color: inherit; text-decoration: none; }
-  .locus, .entry, .frame { break-inside: avoid; }
+  .locus, .entry, .frame, .stanza { break-inside: avoid; }
   svg.pencil path { filter: none; }
 }
